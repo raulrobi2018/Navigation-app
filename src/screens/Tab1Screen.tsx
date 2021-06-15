@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from '../themes/appTheme';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import {TouchableIcon} from '../components/TouchableIcon';
+import {globalStylesValues} from '../themes/tabsTheme';
 
 export const Tab1Screen = () => {
   useEffect(() => {
@@ -13,7 +14,15 @@ export const Tab1Screen = () => {
     <View style={styles.globalMargin}>
       <Text style={styles.title}>Icons</Text>
       <Text>
-        <Icon name="basketball-outline" size={60} color="#900" />
+        <TouchableIcon iconName="basketball-outline" size={60} color="red" />
+        <TouchableIcon
+          iconName="bicycle-outline"
+          size={60}
+          color={globalStylesValues.primary}
+        />
+        <TouchableIcon iconName="hand-left-outline" size={40} color="orange" />
+        <TouchableIcon iconName="barbell-outline" size={100} color="yellow" />
+        <TouchableIcon iconName="happy-outline" size={80} color="green" />
       </Text>
     </View>
   );
