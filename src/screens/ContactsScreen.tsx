@@ -11,6 +11,7 @@ export const ContactsScreen = () => {
     <View style={styles.globalMargin}>
       <Text style={styles.title}>Contacts</Text>
       {!isLoggedIn && <Button title="Sign In" onPress={signIn} />}
+      <Text>{JSON.stringify(authState, null, 4)}</Text>
     </View>
   );
 };

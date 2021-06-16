@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {styles} from '../themes/appTheme';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RouteStackParams} from '../navigation/StackNavigator';
+import {AuthContext} from '../context/AuthContext';
 
 //Para la segunda forma de traer los parámetros
 // interface RouterParams {
@@ -25,6 +26,8 @@ export const PersonScreen = ({route, navigation}: Props) => {
   //Tercer forma
   const params = route.params;
 
+  const {authState, changeUsername} = useContext(AuthContext);
+
   useEffect(() => {
     navigation.setOptions({
       //Para la primer forma
@@ -34,9 +37,15 @@ export const PersonScreen = ({route, navigation}: Props) => {
     });
   }, []);
 
+  useEffect(() => {
+    changeUsername(params.name);
+  }, []);
+
   return (
     <View style={styles.globalMargin}>
       <Text style={styles.title}>Person Screen</Text>
+      <Text>Username: {authState.username}</Text>
+      <Text>{JSON.stringify(authState, null, 4)}</Text>
     </View>
   );
 };

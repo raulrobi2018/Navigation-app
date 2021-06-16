@@ -3,7 +3,8 @@ import {AuthState} from './AuthContext';
 type AuthAction =
   | {type: 'signIn'}
   | {type: 'changeFavIcon'; payload: string}
-  | {type: 'signOut'};
+  | {type: 'signOut'}
+  | {type: 'changeUsername'; payload: string};
 
 //Recibe la acción a ejecutar (AuthAction), la acción es de tipo 'signIn'
 //entra en el swith y ya sabe lo que tiene que hacer
@@ -20,14 +21,21 @@ export const authReducer = (
       };
     case 'signOut':
       return {
+        ...state,
         isLoggedIn: false,
-        username: 'no-username-yet',
+        username: undefined,
+        favoriteIcon: undefined,
       };
 
     case 'changeFavIcon':
       return {
         ...state,
         favoriteIcon: action.payload,
+      };
+    case 'changeUsername':
+      return {
+        ...state,
+        username: action.payload,
       };
     default:
       return state;

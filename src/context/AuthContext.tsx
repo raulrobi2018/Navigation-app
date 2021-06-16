@@ -1,4 +1,4 @@
-import React, {createContext, useReducer, useRef} from 'react';
+import React, {createContext, useReducer} from 'react';
 import {authReducer} from './authReducer';
 
 //How it looks
@@ -21,6 +21,7 @@ export interface AuthContextProps {
   signIn: () => void;
   signOut: () => void;
   changeFavIcon: (iconName: string) => void;
+  changeUsername: (username: string) => void;
 }
 
 //Create the context
@@ -42,6 +43,10 @@ export const AuthProvider = ({children}: any) => {
     dispatch({type: 'changeFavIcon', payload: iconName});
   };
 
+  const changeUsername = (username: string) => {
+    dispatch({type: 'changeUsername', payload: username});
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -49,6 +54,7 @@ export const AuthProvider = ({children}: any) => {
         signIn,
         signOut,
         changeFavIcon,
+        changeUsername,
       }}>
       {children}
     </AuthContext.Provider>
