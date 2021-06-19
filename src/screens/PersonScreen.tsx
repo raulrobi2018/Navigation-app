@@ -26,7 +26,7 @@ export const PersonScreen = ({route, navigation}: Props) => {
   //Tercer forma
   const params = route.params;
 
-  const {authState, changeUsername} = useContext(AuthContext);
+  const {changeUsername} = useContext(AuthContext);
 
   useEffect(() => {
     navigation.setOptions({
@@ -44,8 +44,8 @@ export const PersonScreen = ({route, navigation}: Props) => {
   return (
     <View style={styles.globalMargin}>
       <Text style={styles.title}>Person Screen</Text>
-      <Text>Username: {authState.username}</Text>
-      <Text>{JSON.stringify(authState, null, 4)}</Text>
+      <Text>Username: {params.name}</Text>
+      <Text>{JSON.stringify(params, null, 4)}</Text>
     </View>
   );
 };
